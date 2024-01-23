@@ -33,6 +33,8 @@ fs.readFile('./test-file.txt',(err,data)=>{
 
     setImmediate(()=>console.log("Immediate 2 finished"))
 
+    process.nextTick(()=>console.log("Process nextTick"))
+
 })
 
 console.log("Hello from the top-level code!!")
