@@ -3,7 +3,8 @@ const fs = require('fs');
 const crypto = require('crypto')
 
 const start = Date.now();
-process.env.UV_THREADPOOL_SIZE = 20
+
+process.env.UV_THREADPOOL_SIZE = 100
 
 // HOW CODE GET Executed in the SINGLE THREAD MODEL
 
@@ -30,7 +31,7 @@ fs.readFile('./test-file.txt',(err,data)=>{
     }
     console.log(data)
 
-    console.log("--------------------------------------------------------")
+    console.log("-----------------------------------------------------------------")
 
     setTimeout(()=> console.log("Timer 2 finised !!"),0)
 
@@ -39,9 +40,9 @@ fs.readFile('./test-file.txt',(err,data)=>{
 
     setImmediate(()=>console.log("Immediate 2 finished"))
 
-    process.nextTick(()=>console.log("Process nextTick"))
+    // process.nextTick(()=>console.log("Process nextTick"))
 
-    crypto.pbkdf2("password" , 'salt' ,100000,1024,'sha512' , ()=> {
+    crypto.pbkdf2("password" , 'salt' ,100000 , 1024,'sha512' , ()=> {
       console.log('password encrypted !! in  ' + (Date.now() - start)/1000 + " second!!" )
     })
     crypto.pbkdf2("password" , 'salt' ,100000,1024,'sha512' , ()=> {
